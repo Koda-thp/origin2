@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ── Palette ORIGIN — aucun noir/blanc pur ───────────────── */
+  --color-cream: #f7efe9;
+  --color-cream-soft: #fcf7f2;
+  --color-bordeaux: #3b131e;
+  --color-bordeaux-deep: #2a0c14;
+  --color-rose: #e9cfd6;
+  --color-rose-soft: #f3e3e7;
+  --color-tan: #eadac9;
+  --color-terracotta: #c9978a;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* ── Typographies (injectées par next/font dans layout.tsx) ─ */
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-script: var(--font-caveat), cursive;
+  --font-sans: var(--font-archivo), "Helvetica Neue", sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* ── Animations ──────────────────────────────────────────── */
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-bordeaux);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-bordeaux);
+  color: var(--color-rose);
+}
+
+/* ── Reveal au scroll (activé uniquement côté client, ≥768px) ─ */
+.reveal {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .reveal[data-state="hidden"] {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  .reveal[data-state="visible"] {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal[data-state] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-marquee {
+    animation: none;
+  }
 }
