@@ -22,9 +22,9 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "ORIGIN — Studio Lagree · Pilates haute intensité",
+  title: "ORIGIN — Studio Lagree · Haute intensité",
   description:
-    "ORIGIN est un studio de Lagree et pilates heated. 45 minutes, bas impact, haute intensité — pour sculpter un core d'acier dans une chaleur qui réveille.",
+    "ORIGIN est un studio de Lagree heated. 45 minutes, bas impact, haute intensité — pour sculpter un core d'acier dans une chaleur qui réveille.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

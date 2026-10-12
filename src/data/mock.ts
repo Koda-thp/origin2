@@ -150,7 +150,7 @@ export const faq = {
   imageAlt: "Gainage — détail d'une séance ORIGIN sur fond rouge",
   items: [
     {
-      question: "Faut-il déjà pratiquer le pilates pour rejoindre ?",
+      question: "Faut-il déjà avoir pratiqué le Lagree pour rejoindre ?",
       answer:
         "Non. Le Megaformer se règle à ton niveau et Lilas accompagne chaque nouvelle venue. La difficulté vient de toi, pas de la machine.",
     },
