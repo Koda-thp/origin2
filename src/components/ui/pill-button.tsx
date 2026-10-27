@@ -16,12 +16,20 @@ interface PillButtonProps {
   children: ReactNode;
   variant?: PillVariant;
   className?: string;
+  onClick?: () => void;
 }
 
-export function PillButton({ href, children, variant = "solid", className }: PillButtonProps) {
+export function PillButton({
+  href,
+  children,
+  variant = "solid",
+  className,
+  onClick,
+}: PillButtonProps) {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={twMerge(
         "inline-flex w-fit items-center justify-center rounded-full px-7 py-3",
         "text-xs font-semibold uppercase tracking-[0.18em]",

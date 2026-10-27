@@ -1,27 +1,44 @@
-import { Concept } from "@/components/sections/concept";
+import { Calendar } from "@/components/sections/calendar";
 import { Cta } from "@/components/sections/cta";
 import { Faq } from "@/components/sections/faq";
 import { Footer } from "@/components/sections/footer";
 import { Founder } from "@/components/sections/founder";
 import { Hero } from "@/components/sections/hero";
+import { Method } from "@/components/sections/method";
 import { Navbar } from "@/components/sections/navbar";
 import { Pricing } from "@/components/sections/pricing";
+import { Studio } from "@/components/sections/studio";
 import { Ticker } from "@/components/sections/ticker";
+import { Values } from "@/components/sections/values";
+import { fetchSiteSettings } from "@/sanity/lib/fetch";
 
-export default function Home() {
+export default async function Home() {
+  const data = await fetchSiteSettings();
+
+  if (!data) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-bordeaux">Chargement...</p>
+      </div>
+    );
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar site={data.site} nav={data.nav} logo={data.images.logo} />
       <main>
-        <Hero />
-        <Founder />
-        <Concept />
-        <Pricing />
-        <Ticker />
-        <Faq />
-        <Cta />
+        <Hero hero={data.hero} image={data.images.hero} />
+        <Method method={data.method} />
+        <Studio studio={data.studio} images={data.images} />
+        <Founder founder={data.founder} images={data.images} />
+        <Values values={data.values} />
+        <Calendar calendar={data.calendar} />
+        <Pricing pricing={data.pricing} />
+        <Ticker ticker={data.ticker} />
+        <Faq faq={data.faq} image={data.images.faq} />
+        <Cta cta={data.cta} image={data.images.cta} />
       </main>
-      <Footer />
+      <Footer site={data.site} footer={data.footer} logo={data.images.logo} />
     </>
   );
 }

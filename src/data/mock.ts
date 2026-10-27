@@ -6,7 +6,7 @@
 export const site = {
   name: "ORIGIN",
   baseline: "Studio Lagree",
-  city: "Paris",
+  city: "",
   description:
     "45 minutes de Lagree haute intensité, bas impact, dans une chaleur douce. Un core d'acier, un esprit affûté.",
 };
@@ -18,12 +18,18 @@ export const images = {
   founderAlt: "/images/founder-2.jpeg",
   faq: "/images/faq.png",
   cta: "/images/cta.png",
+  studioMain: "/images/temporary/hero.jpg",
+  studioGallery1: "/images/final/33db3502-bd98-4d49-a982-31b25f2a47c1.jpeg",
+  studioGallery2: "/images/final/ba0b9f0a-6624-44c5-97f8-4e5b8496b54e.jpeg",
+  studioGallery3: "/images/final/d6de2949-b7e5-4546-a916-7ce5adca5a77.jpeg",
+  studioGallery4: "/images/final/dc4965ab-f806-40b2-ab10-b5ee00d72cf4.jpeg",
 } as const;
 
 export const nav = {
   links: [
+    { label: "La méthode", href: "#methode" },
+    { label: "Le studio", href: "#studio" },
     { label: "La fondatrice", href: "#fondatrice" },
-    { label: "Le concept", href: "#concept" },
     { label: "Tarifs", href: "#tarifs" },
     { label: "FAQ", href: "#faq" },
   ],
@@ -31,16 +37,95 @@ export const nav = {
 };
 
 export const hero = {
-  eyebrow: "Origin — Studio Lagree · Paris",
+  eyebrow: "Origin — Studio Premium Lagree",
   titleTop: "Le core",
   titleScript: "en",
   titleBottom: "feu.",
   subtitle:
     "Lagree haute intensité, bas impact. 45 minutes dans une chaleur douce pour sculpter, renforcer, transformer — sans jamais ménager ton potentiel.",
-  ctaPrimary: { label: "Réserver mon tapis", href: "#tarifs" },
-  ctaSecondary: { label: "Découvrir le concept", href: "#concept" },
-  annotation: "45 min · 32°C · Megaformer",
+  ctaPrimary: { label: "Réserver ma séance", href: "#tarifs" },
+  ctaSecondary: { label: "Découvrir la méthode", href: "#methode" },
+  annotation: "45 min · 32°C · Microformer",
   imageAlt: "Athlète en étirement sur fond rouge profond — séance ORIGIN",
+};
+
+export const method = {
+  titleTop: "La méthode",
+  titleScript: "Lagree",
+  introduction:
+    "Créée en 1998 par Sebastien Lagree à Los Angeles, la méthode Lagree est un entraînement haute intensité, faible impact qui combine principes de bodybuilding et mouvements contrôlés sur machine spécifique.",
+  features: [
+    {
+      title: "Haute intensité, faible impact",
+      description:
+        "Un travail musculaire intense qui sollicite jusqu'à 600 muscles simultanément, sans stress pour les articulations grâce à la résistance à ressorts.",
+    },
+    {
+      title: "Mouvements lents et contrôlés",
+      description:
+        "Chaque répétition dure entre 16 et 40 secondes. Pas d'élan, pas de momentum — seulement une tension musculaire continue et précise.",
+    },
+    {
+      title: "Time under tension",
+      description:
+        "Chaque série dure au minimum une minute, jusqu'à l'échec musculaire. C'est cette tension prolongée qui sculpte et renforce en profondeur.",
+    },
+    {
+      title: "Microformer",
+      description:
+        "Machine spécifique avec résistance à ressorts variables. Plus de 500 exercices possibles, tous conçus pour intégrer l'ensemble du corps.",
+    },
+  ],
+  benefits: {
+    title: "Les bienfaits",
+    items: [
+      "Renforcement musculaire profond et durable",
+      "Amélioration de l'endurance et de l'équilibre",
+      "Core plus fort, posture plus stable",
+      "Résultats visibles dès un mois avec 2 à 3 séances par semaine",
+      "Adapté à tous les niveaux — débutants comme athlètes",
+    ],
+  },
+  differentiation: {
+    title: "Ce qui différencie le Lagree",
+    text: "Contrairement aux méthodes traditionnelles, le Lagree élimine les temps de repos et maintient une tension musculaire continue. Les transitions sont rapides, le cardio s'active dès la première minute, et chaque séance pousse tes muscles au-delà de leurs limites habituelles — le tout dans un environnement contrôlé et bienveillant.",
+  },
+};
+
+export const studio = {
+  titleTop: "Le",
+  titleScript: "studio",
+  introduction:
+    "Un écrin premium pensé pour ton entraînement. Chez ORIGIN, chaque détail compte : la chaleur maîtrisée à 32°C, l'intimité d'un espace conçu pour la concentration, et des équipements Microformer dernière génération.",
+  ambiance: {
+    title: "L'ambiance",
+    text: "Lumière tamisée, musique entraînante, énergie collective. Ici, tu te déconnectes du quotidien pour te reconnecter à tes sensations. Le studio est chauffé en permanence pour amplifier chaque mouvement et chaque résultat.",
+    highlights: [
+      { label: "32°C", description: "Chauffe permanente" },
+      { label: "Microformer", description: "Équipements premium" },
+      { label: "12 places", description: "Espace intime" },
+    ],
+  },
+  gallery: {
+    title: "En images",
+    images: [
+      { src: "studioGallery1", alt: "Salle principale ORIGIN avec Microformers" },
+      { src: "studioGallery2", alt: "Détail d'un Microformer ORIGIN" },
+      { src: "studioGallery3", alt: "Ambiance lumineuse du studio ORIGIN" },
+      { src: "studioGallery4", alt: "Espace d'entraînement ORIGIN" },
+    ],
+  },
+  location: {
+    title: "Nous trouver",
+    address: "272 Ancien Chemin de Toulon",
+    postalCode: "83110",
+    city: "Sanary-sur-Mer",
+    country: "France",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.8!2d5.8054!3d43.1187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9d0a0b0c0d0e0%3A0x1234567890abcdef!2s272+Ancien+Chemin+de+Toulon%2C+83110+Sanary-sur-Mer%2C+France!5e0!3m2!1sfr!2sfr!4v1234567890",
+    parking: "Places de stationnement disponibles sur place",
+  },
+  imageMainAlt: "Intérieur du studio ORIGIN — ambiance premium et chaleureuse",
 };
 
 export const founder = {
@@ -51,8 +136,9 @@ export const founder = {
   titleSuffix: "Origin",
   role: "Instructrice certifiée Lagree · Spécialiste core · Toujours de bonne humeur",
   bio: [
-    "Après des années dans le fitness traditionnel, Lilas a vu trop de personnes intimidées ou laissées de côté. Elle a créé ORIGIN comme un lieu où la force se construit dans la douceur — et où chaque corps est le bienvenu.",
-    "Sa méthode mêle la précision du Megaformer à une programmation haute en énergie : sculpter les muscles profonds, bâtir une force durable, et repartir avec le sourire.",
+    "Passionnée de sport, j'aime bouger, découvrir de nouvelles disciplines et me challenger au quotidien. Pour moi, le sport est bien plus qu'une activité physique : c'est une véritable source de bien-être, d'équilibre et de confiance en soi.",
+    "C'est cette passion qui m'a amenée à obtenir mon diplôme de coach sportive dans un premier temps, puis à devenir coach certifiée Lagree.",
+    "À travers mon studio, j'ai envie de partager cette énergie et de créer un lieu où chacun se sent bien, se dépasse et progresse à son rythme, toujours dans la bienveillance et la bonne humeur.",
   ],
   cta: { label: "Cours avec Lilas", href: "#tarifs" },
   imageMainAlt: "Lilas, fondatrice d'ORIGIN, dans le studio",
@@ -81,67 +167,83 @@ export const concept = {
   },
 };
 
-export interface Plan {
+export interface PricingItem {
   name: string;
   price: string;
-  period: string;
-  features: string[];
-  cta: string;
+  period?: string;
+}
+
+export interface PricingCategory {
+  name: string;
   variant: "dark" | "featured" | "light";
+  items: PricingItem[];
 }
 
 export const pricing: {
   backgroundWord: string;
   titleScript: string;
-  plans: Plan[];
+  categories: PricingCategory[];
 } = {
-  backgroundWord: "Choisis ton niveau",
-  titleScript: "Ton niveau, ton rythme",
-  plans: [
+  backgroundWord: "Lagree obsession starts here",
+  titleScript: "Nos tarifs",
+  categories: [
     {
-      name: "Découverte",
-      price: "39€",
-      period: "la séance",
-      features: [
-        "1 séance Lagree 45 min",
-        "Accès vestiaires & douches",
-        "Tapis et serviette fournis",
-      ],
-      cta: "J'essaie",
+      name: "Intro",
       variant: "dark",
+      items: [
+        { name: "Cours d'essai", price: "20€" },
+        { name: "Pack 3 cours", price: "75€", period: "1 seule fois" },
+        { name: "Cours à l'unité", price: "35€" },
+      ],
     },
     {
-      name: "Signature",
-      price: "219€",
-      period: "8 séances / mois",
-      features: [
-        "8 séances Lagree 45 min",
-        "Réservation prioritaire 7 jours",
-        "Tapis et serviette fournis",
-        "Suivi de progression mensuel",
-      ],
-      cta: "Je m'engage",
+      name: "Class Packs",
       variant: "featured",
+      items: [
+        { name: "Pack 3 cours", price: "90€", period: "valable 1 mois" },
+        { name: "Pack 5 cours", price: "150€", period: "valable 2 mois" },
+        { name: "Pack 10 cours", price: "260€", period: "valable 3 mois" },
+        { name: "Pack 20 cours", price: "480€", period: "valable 6 mois" },
+      ],
     },
     {
-      name: "Illimité",
-      price: "289€",
-      period: "par mois",
-      features: [
-        "Séances illimitées",
-        "Réservation prioritaire 14 jours",
-        "1 coaching privé offert / mois",
-        "Accès aux events du studio",
-        "Gel des vacances inclus",
-      ],
-      cta: "Je fonce",
+      name: "Origin Club",
       variant: "light",
+      items: [
+        { name: "4 cours / mois", price: "85€" },
+        { name: "8 cours / mois", price: "160€" },
+        { name: "Accès illimité", price: "350€", period: "/ mois" },
+      ],
     },
   ],
 };
 
 export const ticker = {
-  items: ["Commence aujourd'hui", "Réserve ton tapis", "45 min à 32°C", "Ton core t'attend"],
+  items: ["Commence aujourd'hui", "Réserve ta séance", "45 min à 32°C", "Ton core t'attend"],
+};
+
+export const values = {
+  titleTop: "Ce qui",
+  titleScript: "nous",
+  titleBottom: "anime",
+  items: [
+    {
+      title: "Le dépassement de soi",
+      description: "Repousser ses limites et découvrir son potentiel",
+    },
+    {
+      title: "L'authenticité",
+      description: "Être soi-même, sans comparaison ni compétition",
+    },
+    {
+      title: "L'énergie collective",
+      description: "Se motiver et se challenger les unes les autres",
+    },
+    {
+      title: "La bienveillance",
+      description: "Encourager sans juger, accompagner sans mettre de pression",
+    },
+  ],
 };
 
 export const faq = {
@@ -150,19 +252,24 @@ export const faq = {
   imageAlt: "Gainage — détail d'une séance ORIGIN sur fond rouge",
   items: [
     {
-      question: "Faut-il déjà avoir pratiqué le Lagree pour rejoindre ?",
+      question: "Qu'est-ce que le Lagree exactement ?",
       answer:
-        "Non. Le Megaformer se règle à ton niveau et Lilas accompagne chaque nouvelle venue. La difficulté vient de toi, pas de la machine.",
+        "Le Lagree est une méthode d'entraînement haute intensité, faible impact, créée en 1998 par Sebastien Lagree. Elle combine des mouvements lents et contrôlés sur machine spécifique (Microformer) avec une tension musculaire continue. Chaque série dure au minimum une minute, poussant les muscles jusqu'à l'échec. Résultat : un renforcement profond, une amélioration de l'endurance et un core d'acier.",
     },
     {
-      question: "Les cours sont-ils vraiment chauffés ?",
+      question: "Le Lagree est-il adapté aux débutantes ?",
       answer:
-        "Oui — le studio est maintenu autour de 32°C. La chaleur assouplit les muscles, amplifie l'effort et fait de chaque séance une vraie dépense.",
+        "Absolument ! Le Lagree est accessible à tous les niveaux et Lilas accompagne chaque nouvelle venue ! La difficulté vient de toi, pas de la machine.",
+    },
+    {
+      question: "Le studio est-il facilement accessible ?",
+      answer:
+        "Oui ! Idéalement situé à proximité d'une sortie d'autoroute, le studio est facilement accessible en voiture. Des places de stationnement sont disponibles sur place et nous vous conseillons d'arriver quelques minutes en avance pour vous garer sereinement et profiter pleinement de votre séance.",
     },
     {
       question: "Que dois-je apporter ?",
       answer:
-        "Juste ta gourde et des chaussettes de grip si tu en as. Tapis, serviette et eau fraîche sont fournis sur place.",
+        "Une bouteille d'eau et vos chaussettes antidérapantes. Tout le matériel nécessaire à votre séance est disponible au studio.",
     },
     {
       question: "À quelle fréquence dois-je m'entraîner ?",
@@ -170,9 +277,19 @@ export const faq = {
         "Deux à trois séances par semaine suffisent pour voir des résultats en un mois. La constance bat l'intensité occasionnelle.",
     },
     {
-      question: "Est-ce que je vais « gonfler » ?",
+      question: "Est-ce normal de trembler pendant une séance ?",
       answer:
-        "Non. Le Lagree cible les muscles profonds en endurance de force : tu gagnes en tonus, en posture et en définition, jamais en volume.",
+        "Oui, cela peut arriver ! Les tremblements sont souvent liés à la fatigue musculaire et à l'intensité du travail. L'essentiel est de respecter vos limites.",
+    },
+    {
+      question: "Pourquoi essayer le Lagree plutôt qu'un entraînement classique ?",
+      answer:
+        "Parce que le Lagree propose une expérience unique : un entraînement complet qui associe force, endurance, équilibre et concentration.",
+    },
+    {
+      question: "Quelle tenue porter ?",
+      answer:
+        "Optez pour une tenue de sport confortable et près du corps. Les chaussettes antidérapantes sont obligatoires pour pratiquer en toute sécurité.",
     },
   ],
 };
@@ -189,16 +306,24 @@ export const cta = {
 export const footer = {
   wordmark: "Origin",
   tagline: "Studio Lagree — Le core en feu.",
+  phone: "07 88 32 20 82",
+  phoneLink: "tel:+33788322082",
+  instagram: "https://www.instagram.com/origin_lagree/",
+  instagramLabel: "@origin_lagree",
+  address: "272 Ancien Chemin de Toulon",
+  postalCode: "83110",
+  city: "Sanary-sur-Mer",
   nav: [
+    { label: "La méthode", href: "#methode" },
+    { label: "Le studio", href: "#studio" },
     { label: "La fondatrice", href: "#fondatrice" },
-    { label: "Le concept", href: "#concept" },
     { label: "Tarifs", href: "#tarifs" },
     { label: "FAQ", href: "#faq" },
   ],
   legal: [
-    { label: "Mentions légales", href: "#mentions-legales" },
-    { label: "Politique de confidentialité", href: "#politique-de-confidentialite" },
-    { label: "Gestion des cookies", href: "#gestion-des-cookies" },
+    { label: "Mentions légales", href: "/mentions-legales" },
+    { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
+    { label: "Gestion des cookies", href: "/cookies" },
   ],
   credits: "Fait avec ❤️ par l'Agence Grey",
 };

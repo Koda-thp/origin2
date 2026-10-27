@@ -18,6 +18,7 @@
 
   /* ── Animations ──────────────────────────────────────────── */
   --animate-marquee: marquee 32s linear infinite;
+  --animate-marquee-slow: marquee 64s linear infinite;
 
   @keyframes marquee {
     to {

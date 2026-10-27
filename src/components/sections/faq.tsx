@@ -1,10 +1,16 @@
 import { Reveal } from "@/components/ui/reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { Visual } from "@/components/ui/visual";
-import { faq, images } from "@/data/mock";
+import { urlFor } from "@/sanity/lib/image";
+import type { SiteSettings } from "@/sanity/types";
 
-/** FAQ en <details> natifs — accessible et zéro JS. */
-export function Faq() {
+export function Faq({
+  faq,
+  image,
+}: {
+  faq: SiteSettings["faq"];
+  image: SiteSettings["images"]["faq"];
+}) {
   return (
     <section id="faq" className="py-16 md:py-28">
       <div className="mx-auto grid max-w-7xl items-stretch gap-6 px-5 md:grid-cols-2 md:gap-8 md:px-10">
@@ -37,7 +43,7 @@ export function Faq() {
 
         <Reveal delay={120}>
           <Visual
-            src={images.faq}
+            src={urlFor(image).url()}
             alt={faq.imageAlt}
             sizes="(min-width: 768px) 45vw, 100vw"
             className="aspect-[4/5] w-full md:aspect-auto md:h-full"

@@ -2,13 +2,20 @@ import Image from "next/image";
 import { PillButton } from "@/components/ui/pill-button";
 import { Reveal } from "@/components/ui/reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
-import { cta, images } from "@/data/mock";
+import { urlFor } from "@/sanity/lib/image";
+import type { SiteSettings } from "@/sanity/types";
 
-export function Cta() {
+export function Cta({
+  cta,
+  image,
+}: {
+  cta: SiteSettings["cta"];
+  image: SiteSettings["images"]["cta"];
+}) {
   return (
     <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden md:min-h-[80vh]">
       <Image
-        src={images.cta}
+        src={urlFor(image).url()}
         alt={cta.imageAlt}
         fill
         sizes="100vw"

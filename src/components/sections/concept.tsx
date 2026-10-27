@@ -1,9 +1,9 @@
 import { CheckIcon, CrossIcon } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
-import { concept } from "@/data/mock";
+import type { SiteSettings } from "@/sanity/types";
 
-export function Concept() {
+export function Concept({ concept }: { concept: SiteSettings["concept"] }) {
   return (
     <section id="concept" className="py-16 md:py-28">
       <div className="mx-auto max-w-6xl px-5 md:px-10">

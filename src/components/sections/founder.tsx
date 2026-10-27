@@ -2,9 +2,16 @@ import { PillButton } from "@/components/ui/pill-button";
 import { Reveal } from "@/components/ui/reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { Visual } from "@/components/ui/visual";
-import { founder, images } from "@/data/mock";
+import { urlFor } from "@/sanity/lib/image";
+import type { SiteSettings } from "@/sanity/types";
 
-export function Founder() {
+export function Founder({
+  founder,
+  images,
+}: {
+  founder: SiteSettings["founder"];
+  images: SiteSettings["images"];
+}) {
   return (
     <section id="fondatrice" className="relative overflow-x-clip py-16 md:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-12 md:gap-8 md:px-10">
@@ -42,13 +49,13 @@ export function Founder() {
         <div className="relative order-1 md:order-2 md:col-span-5 md:col-start-8">
           <Reveal className="relative">
             <Visual
-              src={images.founderMain}
+              src={urlFor(images.founderMain).url()}
               alt={founder.imageMainAlt}
               sizes="(min-width: 768px) 38vw, 100vw"
               className="aspect-[3/4] w-full"
             />
             <Visual
-              src={images.founderAlt}
+              src={urlFor(images.founderAlt).url()}
               alt={founder.imageAltAlt}
               sizes="(min-width: 768px) 16vw, 40vw"
               className="absolute -bottom-8 -left-6 hidden w-40 rotate-[-5deg] rounded-xl border-4 border-cream shadow-lg sm:block md:-left-14 md:w-52"

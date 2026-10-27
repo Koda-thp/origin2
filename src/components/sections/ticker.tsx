@@ -1,7 +1,6 @@
-import { ticker } from "@/data/mock";
+import type { SiteSettings } from "@/sanity/types";
 
-/** Ruban défilant — animation CSS pure, aucun JS. */
-export function Ticker() {
+export function Ticker({ ticker }: { ticker: SiteSettings["ticker"] }) {
   const chunk = `${ticker.items.join("  \\  ")}  \\  `.repeat(4);
 
   return (

@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import { Anton, Archivo, Caveat } from "next/font/google";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 import "./globals.css";
 
 const anton = Anton({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-anton",
-  display: "swap",
+  display: "optional",
 });
 
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
-  display: "swap",
+  display: "optional",
 });
 
 const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-archivo",
-  display: "swap",
+  display: "optional",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${anton.variable} ${caveat.variable} ${archivo.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-cream font-sans text-bordeaux">{children}</body>
+      <body className="min-h-full bg-cream font-sans text-bordeaux">
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }

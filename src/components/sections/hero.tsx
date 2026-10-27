@@ -2,9 +2,16 @@ import Image from "next/image";
 import { PillButton } from "@/components/ui/pill-button";
 import { Reveal } from "@/components/ui/reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
-import { hero, images } from "@/data/mock";
+import { urlFor } from "@/sanity/lib/image";
+import type { SiteSettings } from "@/sanity/types";
 
-export function Hero() {
+export function Hero({
+  hero,
+  image,
+}: {
+  hero: SiteSettings["hero"];
+  image: SiteSettings["images"]["hero"];
+}) {
   return (
     <section className="relative h-[100dvh] overflow-hidden">
       <div
@@ -48,7 +55,7 @@ export function Hero() {
           <Reveal delay={200} className="relative -mx-5 h-full md:-ml-16 md:-mr-4 lg:-ml-20">
             <div className="relative h-full w-full overflow-hidden">
               <Image
-                src={images.hero}
+                src={urlFor(image).url()}
                 alt={hero.imageAlt}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
@@ -56,9 +63,11 @@ export function Hero() {
                 className="object-cover"
               />
             </div>
-            <p className="absolute -bottom-5 left-4 rotate-[-4deg] font-script text-xl text-bordeaux md:-bottom-6 md:left-6 md:text-2xl">
-              {hero.annotation}
-            </p>
+            {hero.annotation && (
+              <p className="absolute -bottom-5 left-4 rotate-[-4deg] font-script text-xl text-bordeaux md:-bottom-6 md:left-6 md:text-2xl">
+                {hero.annotation}
+              </p>
+            )}
           </Reveal>
         </div>
       </div>
