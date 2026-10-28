@@ -36,14 +36,13 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to Hostinger via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
+          port: 65002
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: ./public_html/
-          protocol: ftps
-          security: loose
-          log-level: verbose
+          local_path: './out/*'
+          remote_path: 'public_html'
+          sftp_only: true
