@@ -36,9 +36,9 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Deploy to Hostinger via SCP
+      - name: Deploy to Hostinger via LFTP
         env:
-          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          sudo apt-get update && sudo apt-get install -y sshpass
-          sshpass -e scp -P 65002 -o StrictHostKeyChecking=no -r ./out/. ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:public_html/
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; set net:timeout 15; set net:max-retries 3; mirror -R --verbose ./out/ public_html/; quit" -u "${{ secrets.FTP_USERNAME }},$FTP_PASSWORD" 153.92.10.190
