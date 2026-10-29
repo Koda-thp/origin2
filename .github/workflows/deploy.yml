@@ -44,10 +44,10 @@ jobs:
           FTP_HOST: ${{ secrets.FTP_SERVER }}
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          REMOTE_DIR: ${{ vars.HOSTINGER_REMOTE_DIR || 'public_html/' }}
+          REMOTE_DIR: ${{ vars.HOSTINGER_REMOTE_DIR || 'domains/origin-lagree.fr/public_html/' }}
         run: |
           sudo apt-get update && sudo apt-get install -y lftp
-          lftp -e "set sftp:auto-confirm yes; set net:timeout 20; pwd; echo '--- ls -la ---'; cls -la; echo '--- ls -la public_html ---'; cls -la public_html 2>/dev/null; echo '--- ls -la domains ---'; cls -la domains 2>/dev/null; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002" || true
+          lftp -c "set sftp:auto-confirm yes; set net:timeout 20; open -u $FTP_USER,$FTP_PASSWORD sftp://$FTP_HOST:65002; pwd; cls -la domains/; cls -la domains/origin-lagree.fr/; quit" || true
           ftp_deploy() {
             lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; set net:timeout 20; set net:max-retries 3; mirror -R --verbose ./out/ $REMOTE_DIR; quit" -u "$FTP_USER,$FTP_PASSWORD" "$FTP_HOST"
           }
