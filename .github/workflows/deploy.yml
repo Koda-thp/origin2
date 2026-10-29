@@ -36,28 +36,34 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Add deploy marker
+        run: echo "$GITHUB_SHA" > out/deploy-version.txt
+
       - name: Deploy to Hostinger
         env:
           FTP_HOST: ${{ secrets.FTP_SERVER }}
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          REMOTE_DIR: ${{ vars.HOSTINGER_REMOTE_DIR || 'public_html/' }}
         run: |
           sudo apt-get update && sudo apt-get install -y lftp
+          lftp -e "set sftp:auto-confirm yes; set net:timeout 20; pwd; echo '--- ls -la ---'; cls -la; echo '--- ls -la public_html ---'; cls -la public_html 2>/dev/null; echo '--- ls -la domains ---'; cls -la domains 2>/dev/null; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002" || true
           ftp_deploy() {
-            lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; set net:timeout 20; set net:max-retries 3; mirror -R --verbose ./out/ public_html/; quit" -u "$FTP_USER,$FTP_PASSWORD" "$FTP_HOST"
+            lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; set net:timeout 20; set net:max-retries 3; mirror -R --verbose ./out/ $REMOTE_DIR; quit" -u "$FTP_USER,$FTP_PASSWORD" "$FTP_HOST"
           }
           sftp_deploy() {
-            lftp -e "set sftp:auto-confirm yes; set net:timeout 20; set net:max-retries 3; mirror -R --verbose ./out/ public_html/; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002"
+            lftp -e "set sftp:auto-confirm yes; set net:timeout 20; set net:max-retries 3; mirror -R --verbose ./out/ $REMOTE_DIR; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002"
           }
           ftp_deploy || { echo "FTP port 21 indisponible, tentative SFTP port 65002"; sftp_deploy; }
 
       - name: Verify live deployment
         run: |
-          chunk=$(grep -oE '/_next/static/chunks/[A-Za-z0-9._-]+\.js' out/index.html | head -1)
-          echo "Vérification du chunk déployé: https://origin-lagree.fr$chunk"
-          for i in 1 2 3 4 5 6; do
-            if curl -fsS --max-time 20 "https://origin-lagree.fr$chunk?cb=$RANDOM" -o /dev/null; then
-              echo "Déploiement vérifié: le site sert le nouveau build."
+          echo "Version attendue: $GITHUB_SHA"
+          for i in 1 2 3 4 5 6 7 8 9; do
+            live=$(curl -fsS --max-time 20 "https://origin-lagree.fr/deploy-version.txt?cb=$RANDOM" || true)
+            echo "Tentative $i: $live"
+            if [ "$live" = "$GITHUB_SHA" ]; then
+              echo "Déploiement vérifié: le site sert le build $GITHUB_SHA."
               exit 0
             fi
             sleep 10
