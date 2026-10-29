@@ -31,7 +31,7 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          lftp -e "set sftp:auto-confirm yes; set net:timeout 20; pwd; echo '--- home ---'; cls -la; echo '--- domains ---'; cd domains; cls -la; echo '--- domains/origin-lagree.fr ---'; cd origin-lagree.fr; cls -la; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002" || true
+          lftp -e "set sftp:auto-confirm yes; set net:timeout 20; pwd; echo '--- home ---'; cls -la; echo '--- public_html ---'; cd public_html; cls -la; echo '--- domains ---'; cd ../domains; cls -la; echo '--- docroot ---'; cd origin-lagree.fr/public_html; cls -la | head -40; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002" || true
           probe="probe-${GITHUB_SHA}.txt"
           echo "$GITHUB_SHA" > "/tmp/$probe"
           for d in public_html domains/origin-lagree.fr/public_html domains/www.origin-lagree.fr/public_html; do
