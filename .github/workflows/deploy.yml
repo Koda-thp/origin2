@@ -9,6 +9,10 @@ on:
         description: "Diagnostic des chemins Hostinger (aucun déploiement)"
         type: boolean
         default: false
+      cleanup:
+        description: "Supprimer les dossiers créés par erreur dans public_html"
+        type: boolean
+        default: false
   repository_dispatch:
     types: [sanity-deploy]
 
@@ -32,13 +36,10 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           lftp -e "set sftp:auto-confirm yes; set net:timeout 20; pwd; echo '--- home ---'; cls -la; echo '--- public_html ---'; cd public_html; cls -la; echo '--- domains ---'; cd ../domains; cls -la; echo '--- docroot ---'; cd origin-lagree.fr/public_html; cls -la | head -40; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002" || true
-          probe="probe-${GITHUB_SHA}.txt"
-          echo "$GITHUB_SHA" > "/tmp/$probe"
-          for d in public_html domains/origin-lagree.fr/public_html domains/www.origin-lagree.fr/public_html; do
-            lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; mkdir -p '$d'; cd '$d'; put /tmp/$probe; quit" -u "$FTP_USER,$FTP_PASSWORD" "$FTP_HOST" && echo "sonde uploadée dans $d"
-            echo -n "HTTP https://origin-lagree.fr/$probe depuis $d -> "
-            curl -s -o /dev/null -w "%{http_code}\n" "https://origin-lagree.fr/$probe?cb=$RANDOM"
-          done
+          if [ "${{ github.event.inputs.cleanup }}" = "true" ]; then
+            echo '--- nettoyage des dossiers créés par erreur ---'
+            lftp -e "set sftp:auto-confirm yes; set net:timeout 20; cd public_html; rm -r -f public_html; rm -r -f domains; mrm -f probe-*.txt; cls -la; quit" -u "$FTP_USER,$FTP_PASSWORD" "sftp://$FTP_HOST:65002" || true
+          fi
 
   build-and-deploy:
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.diagnose != 'true'
