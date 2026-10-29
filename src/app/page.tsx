@@ -1,3 +1,5 @@
+"use client";
+
 import { Calendar } from "@/components/sections/calendar";
 import { Cta } from "@/components/sections/cta";
 import { Faq } from "@/components/sections/faq";
@@ -10,15 +12,25 @@ import { Pricing } from "@/components/sections/pricing";
 import { Studio } from "@/components/sections/studio";
 import { Ticker } from "@/components/sections/ticker";
 import { Values } from "@/components/sections/values";
-import { fetchSiteSettings } from "@/sanity/lib/fetch";
+import { useSiteSettings } from "@/sanity/lib/use-site-settings";
 
-export default async function Home() {
-  const data = await fetchSiteSettings();
+export default function Home() {
+  const { data, error, loading } = useSiteSettings();
 
-  if (!data) {
+  if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <p className="text-bordeaux">Chargement...</p>
+      </div>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-bordeaux">
+          Impossible de charger le contenu. Veuillez réessayer dans quelques instants.
+        </p>
       </div>
     );
   }
