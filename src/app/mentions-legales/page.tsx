@@ -38,6 +38,9 @@ export default function MentionsLegales() {
               <strong>Forme juridique :</strong> {legalConfig.legalForm}
             </p>
             <p>
+              <strong>Capital social :</strong> {legalConfig.capital}
+            </p>
+            <p>
               <strong>SIRET :</strong> {legalConfig.siret}
             </p>
             <p>

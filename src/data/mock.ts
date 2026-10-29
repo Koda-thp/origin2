@@ -33,7 +33,10 @@ export const nav = {
     { label: "Tarifs", href: "#tarifs" },
     { label: "FAQ", href: "#faq" },
   ],
-  cta: { label: "Réserver", href: "#tarifs" },
+  cta: {
+    label: "Réserver",
+    href: "https://backoffice.bsport.io/m/Origin%20Studio%20Lagree/6139/calendar/",
+  },
 };
 
 export const hero = {

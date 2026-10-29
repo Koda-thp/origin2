@@ -35,7 +35,7 @@ export default function PolitiqueConfidentialite() {
           </h2>
           <p className="text-sm leading-relaxed text-bordeaux/80">
             Le responsable du traitement des données collectées sur ce site est{" "}
-            <strong>{legalConfig.companyName}</strong>, dont le siège social est situé au{" "}
+            <strong>{legalConfig.responsibleName}</strong>, dont le siège social est situé au{" "}
             {legalConfig.headquarters.address}, {legalConfig.headquarters.postalCode}{" "}
             {legalConfig.headquarters.city}. Pour toute question relative à cette politique, vous
             pouvez nous contacter à l'adresse{" "}
